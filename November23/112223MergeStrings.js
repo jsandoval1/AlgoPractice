@@ -22,7 +22,7 @@ var mergeAlternately = function (word1, word2) {
         if (arr1.length > 0) {
             mergedArray.push(arr1.shift()); //pushing into mergedArray (what we shift from arr1)
         }
-        if (arr2.length > 0){
+        if (arr2.length > 0) {
             mergedArray.push(arr2.shift());
         }
     }
@@ -58,3 +58,22 @@ var mergeAlternately = function (word1, word2) {
 // !Constraints:
 // 1 <= word1.length, word2.length <= 100
 // word1 and word2 consist of lowercase English letters.
+
+// * Test Cases 
+// Test case 1: word1 and word2 have equal lengths
+console.log(mergeAlternately("abc", "pqr")); // Expected output: "apbqcr"
+
+// Test case 2: word1 is shorter than word2
+console.log(mergeAlternately("ab", "pqrs")); // Expected output: "apbqrs"
+
+// Test case 3: word1 is longer than word2
+console.log(mergeAlternately("abcd", "pq")); // Expected output: "apbqcd"
+
+// Test case 4: word1 is an empty string
+console.log(mergeAlternately("", "xyz")); // Expected output: "xyz"
+
+// Test case 5: word2 is an empty string
+console.log(mergeAlternately("abc", "")); // Expected output: "abc"
+
+// Test case 6: word1 and word2 are both empty strings
+console.log(mergeAlternately("", "")); // Expected output: ""
