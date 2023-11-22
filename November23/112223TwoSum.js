@@ -20,5 +20,5 @@ var twoSum = function (nums, target) {
 
 // Test Cases:
 console.log(twoSum([2,7,11,15], 9)); // --> [0,1]
-console.log(twoSum([3,4,0,2], 6)); // --> [1,2]
+console.log(twoSum([3,4,0,2], 6)); // --> [1,3]
 console.log(twoSum([3,3], 6)); // --> [0,1]
