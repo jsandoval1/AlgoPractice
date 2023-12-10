@@ -16,7 +16,9 @@ var maxProfit = function (prices) {
     let maxPrice = 0;
 
     // loop through prices array, ending at prices.length
-    for (i = 0; i < prices.length; i++) {
+    for (rightPointer = 0; rightPointer < prices.length; rightPointer++) {
+        console.log(`Checking prices[${leftPointer}] = ${prices[leftPointer]} and prices[${rightPointer}] = ${prices[rightPointer]}`);
+
         // if leftP price is less than rightP price
         if (prices[leftPointer] < prices[rightPointer]) {
             // declare newPrice var
@@ -24,15 +26,17 @@ var maxProfit = function (prices) {
             // get the max price from new prices and current max price
             let newPrice = prices[rightPointer] - prices[leftPointer];
             maxPrice = Math.max(maxPrice, newPrice);
+            console.log(`Found potential profit. Updating maxPrice to ${maxPrice}`);
         } else {
             // otherwise,
             leftPointer = rightPointer;
+            console.log(`Resetting leftPointer to ${leftPointer}`);
         }
-        // move right pointer forward, regardless of if
-        rightPointer++
     }
-    return maxPrice
+    console.log(`Final maxPrice: ${maxPrice}`);
+    return maxPrice;
 };
+
 
 // Example 1:
 // Input: prices = [7,1,5,3,6,4]
@@ -51,4 +55,5 @@ var maxProfit = function (prices) {
 
 // * test cases
 console.log(maxProfit([7, 1, 5, 3, 6, 4])); // -> 5
+console.log("-----");
 console.log(maxProfit([7, 6, 4, 3, 1])); // -> 0
