@@ -5,7 +5,34 @@
 // Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
 
 // * Solution:
+/**
+ * @param {number[]} prices
+ * @return {number}
+ */
+var maxProfit = function (prices) {
+    // Initialize pointers, these will change so they are "let"
+    let leftPointer = 0;
+    let rightPointer = 0;
+    let maxPrice = 0;
 
+    // loop through prices array, ending at prices.length
+    for (i = 0; i < prices.length; i++) {
+        // if leftP price is less than rightP price
+        if (prices[leftPointer] < prices[rightPointer]) {
+            // declare newPrice var
+            // access prices inside [prices] at pointers
+            // get the max price from new prices and current max price
+            let newPrice = prices[rightPointer] - prices[leftPointer];
+            maxPrice = Math.max(maxPrice, newPrice);
+        } else {
+            // otherwise,
+            leftPointer = rightPointer;
+        }
+        // move right pointer forward, regardless of if
+        rightPointer++
+    }
+    return maxPrice
+};
 
 // Example 1:
 // Input: prices = [7,1,5,3,6,4]
@@ -21,3 +48,7 @@
 // Constraints:
 // 1 <= prices.length <= 105
 // 0 <= prices[i] <= 104
+
+// * test cases
+console.log(maxProfit([7, 1, 5, 3, 6, 4])); // -> 5
+console.log(maxProfit([7, 6, 4, 3, 1])); // -> 0
