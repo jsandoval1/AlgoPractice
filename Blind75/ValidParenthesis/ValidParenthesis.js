@@ -1,37 +1,34 @@
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
 const isValid = function (s) {
-    // If the string is empty, return true
-    if (s === "") {
-        return true;
+    // Create array push current parenthesis to and from. Create Hashmap to define pairs.
+    let stack = [];
+    let hashMap = {
+        "(": ")",
+        "{": "}",
+        "[": "]",
     }
 
-    // Create a stack to store the opening brackets and a map to store the opening and closing brackets
-    const stack = [];
-    const parenthesesMap = {
-        '(': ')',
-        '[': ']',
-        '{': '}'
-    };
-
-    // Iterate through the string
+    // Create for loop to iterate through string and push into array
     for (let i = 0; i < s.length; i++) {
-        const char = s[i];
-
-        // If the char is an opening bracket, push it to the stack
-        if (parenthesesMap[char]) {
-            stack.push(char);
+        let symbol = s[i];
+        // If symbol is not undefined in the hashMap, push it in 
+        if (hashMap[symbol] !== undefined) {
+            stack.push(symbol);
+            //  else, pop the last entered symbol and compare it to the current one iterating.
         } else {
-            // Else, if the char is a closing bracket, pop the last opening bracket from the stack and compare it to the current closing bracket
             const lastOpening = stack.pop();
-
-            // Compare the vbalue of the last opening bracket to the current closing bracket. If they don't match, return false.
-            if (parenthesesMap[lastOpening] !== char) {
+            if (hashMap[lastOpening] !== symbol) {
+                // If is not the proper key value pair of the prior opening symbol, this is false
+                console.log(`"${symbol}" is not following the proper order. Returning false...`);
                 return false;
             }
         }
     }
-    // When the iteration is complete, if the stack is empty, return true. Otherwise there are unclosed brackets, so return false.
     return stack.length === 0;
-};
+}
 
 console.log(isValid("()")); // true
 console.log("------------");
