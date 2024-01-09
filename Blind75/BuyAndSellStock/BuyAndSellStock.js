@@ -4,24 +4,28 @@
  */
 
 // 
+/**
+ * @param {number[]} prices
+ * @return {number}
+ */
 var maxProfit = function (prices) {
-    // Set up pointers to track the lowest price and the highest profit
+    // Set up pointer and initialize highestProfit as 0, may return as 0.
     let lowestPrice = prices[0];
     let highestProfit = 0;
 
-    // Set up a for loop to iterate through the prices array
-    for (let i = 0; i < prices.length; i++) {
-        // If the current price is lower than the lowest price, set the current price as the lowest price
-        if (prices[i] < lowestPrice) {
-            lowestPrice = prices[i];
+    // Iterate through array, setting todays price to [i] and comparing it to our lowestPrice var. If it is lower, set the lowestPrice = to todays price
+    for (let i = 0; i < prices.length; i++){
+        let todaysPrice = prices[i]
+
+        if ( todaysPrice < lowestPrice){
+            lowestPrice = todaysPrice
         }
-        // If the current price minus the lowest price is greater than the highest profit, set the current price minus the lowest price as the highest profit
-        if (prices[i] - lowestPrice > highestProfit) {
-            highestProfit = prices[i] - lowestPrice;
+
+        if (todaysPrice - lowestPrice > highestProfit){
+            highestProfit = todaysPrice - lowestPrice
         }
     }
-    // Return the highest profit
-    return highestProfit;
+    return highestProfit
 };
 
 // Test Cases
